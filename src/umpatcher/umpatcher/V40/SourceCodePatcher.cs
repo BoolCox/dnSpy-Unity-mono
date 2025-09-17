@@ -37,6 +37,17 @@ namespace UnityMonoDllSourceCodePatcher.V40 {
 			Patch_masm_fixed_props();
 			Patch_bdwgc_gc_atomic_ops_h();
 			Patch_bdwgc_gcconfig_h();
+			Patch_mono_metadata_mono_debug_c();
+		}
+		void Patch_mono_metadata_mono_debug_c() {
+			if (solutionOptions.UnityVersion.CompareTo(new UnityVersion(2019, 1, 0, UnityVersionRelease.Untyped, "-mbe")) < 0)
+				return;
+			var filename = Path.Combine(solutionOptions.UnityVersionDir, "mono", "metadata", "mono-debug.c");
+			var textFilePatcher = new TextFilePatcher(filename);
+			var lines = textFilePatcher.Lines;
+			int index = textFilePatcher.GetIndexOfLine("\tg_assert (!mono_debug_initialized);");
+			lines[index] = lines[index].Replace("\tif (mono_debug_initialized) return;");
+			textFilePatcher.Write();
 		}
 
 		void Patch_mono_metadata_icall_c() {
