@@ -1,3 +1,11 @@
+该仓库参考[博客](https://blog.csdn.net/Ricardo0012/article/details/127107350)和[dnSpy-Unity-mono-unity2021.xx](https://github.com/Neoshrimp/dnSpy-Unity-mono-unity2021.xx)，进行了一些修改以支持`2020.3.45f1-mbe`（更高版本未经测试）。
+
+构建dll需要IDE使用`Windows 10 SDK`和`MSVC v141`，切换到dnSpy分支后打开对应版本的sln后，右键`libmono-dynamic`将其设为启动项目，将发布选项调为`release`后按`Ctrl+B`，dll会生成在`builds\`文件夹下。
+
+对于`2020.3.45f1-mbe`版本，你可以自己构建也可以直接到[Releases](https://github.com/BoolCox/dnSpy-Unity-mono/releases/tag/v1.0.0)页下载。
+
+# 以下是原始README内容：
+
 This repo contains all files needed to build `mono.dll` & `mono-2.0-bdwgc.dll` with debugging support for Unity.
 
 The `master` branch contains the original files. You have to check out the `dnSpy` branch to build everything. Use VS2017.
